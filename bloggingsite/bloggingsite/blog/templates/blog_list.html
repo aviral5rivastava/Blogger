@@ -1,0 +1,29 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %}
+{% block title %} Blog {% endblock %}
+{% block content %}
+
+<h1 class="text-center m-4">Welcome to Blogger</h1>
+
+<a class="btn btn-primary m-5" href="{% url 'blog_create'%}">Write a blog</a>
+<!-- prettier-ignore -->
+<div class="container row gap-3">
+    {% for blog in blogs %}
+
+    <div class="card" style="width: 18rem">
+        <img src="{{blog.photo.url}}" class="card-img-top mt-2" alt="..." />
+        <div class="card-body">
+            <h5 class="card-title">{{blog.title}}</h5>
+            <h5 class="card-text">By: {{blog.user.username}}</h5>
+            <a href="{% url 'blog_read' blog.id %}" class="btn btn-info">Read</a>
+            {% if blog.user == user %}
+            <a href="{% url 'blog_edit' blog.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'blog_delete' blog.id %}" class="btn btn-danger">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

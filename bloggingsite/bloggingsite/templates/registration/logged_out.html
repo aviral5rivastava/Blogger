@@ -1,0 +1,9 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %} 
+{% block content %}
+<h2>Logged out</h2>
+<p>
+    You have been logged out,
+    <a href="{% url 'register' %}">Login Again</a>
+</p>
+{% endblock %}

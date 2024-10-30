@@ -1,0 +1,16 @@
+<!-- prettier-ignore -->
+{% extends "layout.html" %}
+{% block title %} Blog {% endblock %}
+{% block content %}
+<div width="20%">
+    <img src="{{blog.photo.url}}" class="card-img-top mt-2" alt="..." />
+
+    <h5 class="card-title">{{blog.title}}</h5>
+    <h5 class="card-text">By: {{blog.user.username}}</h5>
+    <h5 class="card-text">{{blog.text}}</h5>
+    <a href="{% url 'blog_list' %}" class="btn btn-info">Back</a>
+    {% if blog.user == user %}
+    <a href="{% url 'blog_edit' blog.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'blog_delete' blog.id %}" class="btn btn-danger">Delete</a>
+</div>
+{% endif %} {% endblock %}
